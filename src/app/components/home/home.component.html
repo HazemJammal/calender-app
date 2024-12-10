@@ -1,1 +1,106 @@
-<p>home works!</p>
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav mode="side" class="sidenav" fixedInViewport>
+    <div>
+      <header class="mat-toolbar-single-row" style="height: fit-content;  margin-top: 2vh">
+        <p>Design <span>Calender</span></p>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </header>
+      <mat-divider class="divder"></mat-divider>
+      <div class="mat-toolbar-single-row profile-info">
+        <img src="../../../assets/images/unnamed.jpg" alt="">
+        <div class="profile-name">
+          <p class="mat-title-medium">Walter</p>
+          <span class="mat-body-small">Pro Desinger</span>
+        </div>
+        <mat-icon class="arrow-icon" (click)="toggleActions()">{{ isActionsVisible ? 'arrow_drop_up' : 'arrow_drop_down'
+          }}</mat-icon>
+      </div>
+      @if(isActionsVisible){
+      <div class="actions-show">
+        <div class="actions">
+          <div class="mat-toolbar-single-row">
+            <div class="actions-container">
+              <div class="container-item">
+                <i class="material-icons-outlined">add_box</i>
+                <span class="mat-body-medium">New Event</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="mat-toolbar-single-row">
+            <div class="actions-container">
+              <div class="container-item">
+                <i class="material-icons-outlined">inbox</i>
+                <span class="mat-body-medium">Inbox</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="mat-toolbar-single-row">
+            <div class="actions-container">
+              <div class="container-item">
+                <i class="material-icons-outlined">calendar_month</i>
+                <span class="mat-body-medium">Calendar</span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+      <div class="mat-toolbar-single-row favourites ">
+        <p>Favourites</p>
+        <mat-icon class="arrow-icon" (click)="toggleActions()">{{ isActionsVisible ? 'arrow_drop_up' : 'arrow_drop_down'
+          }}</mat-icon>
+      </div>
+
+      <div class="actions">
+        <div class="mat-toolbar-single-row">
+          <div class="actions-container">
+            <div class="container-item">
+              <i class="material-icons-round">stop</i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="mat-toolbar-single-row">
+          <div class="actions-container">
+            <div class="container-item">
+              <i class="material-icons-round">stop</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="mat-toolbar-single-row">
+          <div class="actions-container">
+            <div class="container-item">
+              <i class="material-icons-round">stop</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+
+
+
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-home-nav></app-home-nav>
+    <app-calendar></app-calendar>
+
+    <button (click)="logout()">logout</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>

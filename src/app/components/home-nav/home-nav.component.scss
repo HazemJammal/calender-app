@@ -1,0 +1,56 @@
+.mat-toolbar-single-row {
+    width: 100%;
+    background-color: #DDCDC2 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'ZonaPro' !important;
+
+    i{
+        font-size: 32px;
+        font-weight: 100;
+    }
+
+    .projects {
+        display: flex;
+        gap: 1rem;
+        width: 67%;
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .mat-title-medium {
+            font: 500 1rem / 1.5rem 'ZonaPro', sans-serif;
+            color: #263048;
+        }
+
+        .day{
+            color: #83786f;
+        }
+
+
+    }
+
+    .icons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .idk{
+        border-radius: 3%;
+        background-color: #263048;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0 3%;
+        width: fit-content;
+        p{
+            margin: 0;
+            padding-right: 1rem ;
+        }
+    }
+}

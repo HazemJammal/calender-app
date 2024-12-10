@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {  Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class GoogleAuthService {
     include_granted_scopes:"true",
     state:"pass-through value"
   }
-  constructor() { }
+  constructor(private router:Router) { }
 
   loginWithGoogle(){
     const queryParams = new URLSearchParams(this.oAuthConfig).toString();
@@ -47,5 +48,6 @@ export class GoogleAuthService {
    */
   clearToken(): void {
     localStorage.removeItem('google_access_token');
+    this.router.navigate(['/login'])
   }
 }

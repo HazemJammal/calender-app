@@ -6,12 +6,13 @@ import{MatIconModule} from '@angular/material/icon';
 import { GoogleAuthService } from '../../services/google-auth.service';
 import { Router } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatCardModule,MatIconModule,MatGridListModule],
+  imports: [MatButtonModule,MatCardModule,MatIconModule,MatGridListModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
   constructor(private googleAuthService:GoogleAuthService,private router:Router){}

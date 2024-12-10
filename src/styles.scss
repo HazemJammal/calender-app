@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+@font-face {
+    font-family: 'ZonaProBold';
+    /* Name of the font */
+    src: url('../src/assets/fonts/ZonaPro-Bold.otf') format('opentype');
+    /* Path and format */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'ZonaPro';
+    /* Name of the font */
+    src: url('../src/assets/fonts/ZonaPro-Regular.ttf') format('opentype');
+    /* Path and format */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+body {
+    margin: 0;
+}
+
+* {
+
+    box-sizing: border-box !important;
+}

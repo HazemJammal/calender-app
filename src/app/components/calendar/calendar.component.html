@@ -1,0 +1,43 @@
+<!-- calendar.component.html -->
+
+<div class="calendar-container">
+    <!-- Calendar Header -->
+    <div class="calendar-header">
+        <div class="day-cell" *ngFor="let day of days">
+            <div class="day-number">{{ day.date }}</div>
+            <div class="day-name">{{ day.day }}</div>
+        </div>
+    </div>
+
+    <!-- Calendar Body Wrapper -->
+    <div class="calendar-body-wrapper">
+        <!-- Calendar Body -->
+        <div class="calendar-body">
+            <!-- Time Column -->
+            <div class="time-column">
+                <div class="time-slot" *ngFor="let time of times">{{ time }}</div>
+            </div>
+
+            <!-- Day Columns -->
+            <div class="day-column" *ngFor="let day of days">
+                <div *ngFor="let event of events[day.date]" [style.top]="getEventPosition(event.startTime)"
+                    [style.height]="getEventHeight(event.startTime, event.endTime)" class="event-card"
+                    (click)="openEventDetails(event)">
+                    <div class="event-time">{{ event.time }}</div>
+                    <div class="event-title">{{ event.title }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Details Popup -->
+    <div class="event-details" *ngIf="selectedEvent">
+        <div class="event-header">
+            <h3>{{ selectedEvent.title }}</h3>
+            <button class="close-button" (click)="closeEventDetails()">X</button>
+        </div>
+        <p><strong>Time:</strong> {{ selectedEvent.time }}</p>
+        <p>{{ selectedEvent.description }}</p>
+        <button mat-button color="primary" (click)="confirmTask()">Confirm Task</button>
+    </div>
+</div>

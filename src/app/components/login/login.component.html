@@ -2,14 +2,12 @@
   <main>
     <mat-grid-list cols="4" rowHeight="100%">
       <mat-grid-tile [colspan]="2" [rowspan]="1">
-        <mat-card appearance="outlined">
-          <mat-card-content>
-            <h1>Login to your Account</h1>
-          </mat-card-content>
+        <mat-card appearance="outlined" class="google-sign-in">
+          <mat-card-header>
+            <h3 class="headline-login">Login to your Account</h3>
+          </mat-card-header>
           <mat-card-content>
             <p>Welcome back! Select Method to login:</p>
-          </mat-card-content>
-          <mat-card-content>
             <button class="gsi-material-button" (click)="login()">
               <div class="gsi-material-button-state"></div>
               <div class="gsi-material-button-content-wrapper">
@@ -31,8 +29,8 @@
                     <path fill="none" d="M0 0h48v48H0z"></path>
                   </svg>
                 </div>
-                <span class="gsi-material-button-contents">Sign in with Google</span>
-                <span style="display: none;">Sign in with Google</span>
+                <span class="gsi-material-button-contents mat-body-small" class="">Sign in with Google</span>
+                <span style="display: none;" >Sign in with Google</span>
               </div>
             </button>
           </mat-card-content>

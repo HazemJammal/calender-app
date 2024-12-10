@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+
+
+i{
+  font-size: 32px;
+}
+
+.sidenav-container {
+  background-color: #DDCDC2;
+  height: 100vh;
+}
+
+.sidenav {
+  padding-top: 1%;
+  white-space: wrap;
+  width: 23% !important;
+
+  p {
+    white-space: wrap;
+  }
+
+  span {
+    white-space: wrap;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      font-family: 'ZonaProBold';
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    span {
+      font-family: 'ZonaPro';
+      letter-spacing: normal;
+    }
+  }
+
+  .mat-toolbar-single-row {
+    padding: 0 2vw;
+  }
+
+  .arrow-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.profile-info {
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+  }
+
+  .profile-name {
+    width: 50%;
+
+    p {
+      font-family: 'ZonaProBold';
+      font-weight: bold;
+      margin: 0;
+    }
+
+    span {
+      font: 400 .75rem / 1rem 'ZonaPro', sans-serif;
+    }
+  }
+}
+
+.divder {
+  margin-bottom: 7%;
+}
+
+.actions {
+  width: 100%;
+
+  .actions-container {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    border: 2px solid transparent;
+    /* Initially transparent border */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+
+  .actions-container:hover {
+    border: 2px solid #DDCDC2;
+    /* Border appears on hover */
+  }
+
+  .mat-toolbar-single-row {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 10px;
+  }
+
+  .container-item {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    width: 100%;
+  }
+
+  mat-icon {
+    width: 27px;
+  }
+}
+
+.actions:hover {
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  background-color: #FF5454;
+}
+
+mat-sidenav-content {}
+
+.content {
+
+  padding: 16px;
+}
+
+
+.actions-show {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.actions-show.ng-enter,
+.actions-show.ng-leave {
+  opacity: 0;
+}
+
+.arrow-icon {
+  cursor: pointer;
+}
+
+.favourites {
+
+  margin-top: 5%;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    margin: 0;
+    font-family: 'ZonaProBold';
+  }
+}
+
+mat-sidenav-content {
+  margin-top: 1%;
+}
+
+.tool-bar {
+  height: fit-content;
+  margin-top: 2vh;
+  background-color: #DDCDC2 !important;
+}
+
+.idk{
+
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    font-family: 'ZonaPro';
+    color: #131E3A;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    width: 60%;
+    /* For smaller screens, the sidenav takes up 60% of the width */
+  }
+}
+
+@media (min-width: 769px) {
+  .sidenav {
+    width: 24%;
+    /* For larger screens, the sidenav is 24% */
+  }
+}
