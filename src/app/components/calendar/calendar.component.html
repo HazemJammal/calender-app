@@ -1,11 +1,15 @@
-<!-- calendar.component.html -->
-
 <div class="calendar-container">
     <!-- Calendar Header -->
     <div class="calendar-header">
+        <div></div>
         <div class="day-cell" *ngFor="let day of days">
-            <div class="day-number">{{ day.date }}</div>
-            <div class="day-name">{{ day.day }}</div>
+            <div class="day-number" [style.color]="day.date === 12 ? '#131E3A' : '#ddcdc2'">
+                <p>{{ day.date }}</p>
+            </div>
+            <div class="day-name">
+                <p>{{ day.day }}</p>
+                <div class="vertical-line"></div>
+            </div>
         </div>
     </div>
 
@@ -13,6 +17,9 @@
     <div class="calendar-body-wrapper">
         <!-- Calendar Body -->
         <div class="calendar-body">
+            <!-- Hour Lines -->
+            <div class="time-line" *ngFor="let time of times; let i = index" [style.top]="getTimeLinePosition(i)">
+            </div>
             <!-- Time Column -->
             <div class="time-column">
                 <div class="time-slot" *ngFor="let time of times">{{ time }}</div>
