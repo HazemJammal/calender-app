@@ -1,18 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { GoogleAccountApiService } from '../../services/google-account-api.service';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatCardModule} from '@angular/material/card';
 
 import { User } from '../../models/user';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
 @Component({
   selector: 'app-home-aside',
   standalone: true,
-  imports: [MatCardModule,MatExpansionModule,MatListModule,MatIconModule,MatToolbarModule,MatToolbarModule, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule,],
+  imports: [],
   templateUrl: './home-aside.component.html',
   styleUrl: './home-aside.component.scss'
 })

@@ -1,22 +1,20 @@
-declare var google: any;
-
-import { Component, OnInit } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import{MatIconModule} from '@angular/material/icon';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GoogleAuthService } from '../../services/google-auth.service';
 import { Router } from '@angular/router';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatButtonModule,MatCardModule,MatIconModule,MatGridListModule],
+  imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  constructor(private googleAuthService:GoogleAuthService,private router:Router){}
+  constructor(private googleAuthService:GoogleAuthService,private router:Router, private ref: ChangeDetectorRef){}
+
+
+  user:gapi.auth2.GoogleUser|null = null;
   ngOnInit():void {
+
     if(this.googleAuthService.isLoggedIn()){
       this.router.navigate(['/home'])
     }
@@ -27,6 +25,7 @@ export class LoginComponent implements OnInit {
       }
     }
   }
+
 
   login(){
     this.googleAuthService.loginWithGoogle();

@@ -176,3 +176,45 @@ aside::before {
   background-color: #303030;
   opacity: 8%;
 }
+
+.gradient-custom-2 {
+  background-image: url('../../../assets/images/240621tu-header-coach-scheduler-default-view-2048x1433.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  .text-white {
+    z-index: 2;
+    color: #ffffff;
+  }  
+}
+
+
+
+  .gradient-custom-2::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Dark tint */
+    z-index: 1;
+    border-top-left-radius: 2%;
+    border-bottom-left-radius: 2%;
+  }
+  
+  
+  @media (min-width: 768px) {
+  .gradient-form {
+  height: 100vh !important;
+  }
+  }
+  @media (min-width: 769px) {
+  .gradient-custom-2 {
+  border-top-right-radius: .3rem;
+  border-bottom-right-radius: .3rem;
+  }
+  }
+
+  

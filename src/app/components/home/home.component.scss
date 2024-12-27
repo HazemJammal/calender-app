@@ -11,10 +11,14 @@ i{
 }
 
 .sidenav {
+  font: 900 1rem / 1.5rem 'ZonaProBold', sans-serif;
+
   padding-top: 1%;
   white-space: wrap;
   width: 23% !important;
-
+  h4{
+    font: 900 2rem / 1rem 'ZonaProBold', sans-serif;
+  }
   p {
     white-space: wrap;
   }
@@ -26,7 +30,9 @@ i{
   header {
     display: flex;
     justify-content: space-between;
+    h4{
 
+    }
     p {
       font-family: 'ZonaProBold';
       margin: 0;

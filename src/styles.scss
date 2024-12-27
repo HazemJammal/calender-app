@@ -1,5 +1,3 @@
-@use '@angular/material' as mat;
-@include mat.core();
 
 @font-face {
     font-family: 'ZonaProBold';
@@ -25,9 +23,14 @@
 
 body {
     margin: 0;
+    font-size: 100%;
+    font-family: 'ZonaPro', "Helvetica Neue", sans-serif
 }
 
 * {
 
     box-sizing: border-box !important;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

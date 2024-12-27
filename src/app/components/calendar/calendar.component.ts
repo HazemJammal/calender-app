@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgFor,NgIf } from '@angular/common';
 import * as Hammer from 'hammerjs';
+import { CalendarService } from '../../services/calendar.service';
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -9,7 +10,13 @@ import * as Hammer from 'hammerjs';
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent {
-  
+ 
+ 
+
+
+
+
+
   days = this.getNextFiveDays();
   times = [
     '01 AM',
@@ -38,8 +45,8 @@ export class CalendarComponent {
     '11 PM',
   ];
   events: any = {
-    12: [
-      { title: 'Finalize Layouts', time: '08:30 AM - 09:30 AM', startTime: '01:30', endTime: '02:45', description: 'Layouts discussion' },
+    18: [
+      { title: 'Finalize Layouts', time: '08:30 AM - 09:30 AM', startTime: '01:00', endTime: '02:45', description: 'Layouts discussion' },
     ],
     13: [
       { title: 'Finalize Layouts', time: '08:00 AM - 11:00 AM', startTime: '08:00', endTime: '11:00', description: 'Layouts discussion' },
@@ -48,7 +55,6 @@ export class CalendarComponent {
       { title: 'Finalize Layouts', time: '10:00 - 09:30 AM', startTime: '09:30', endTime: '10:00', description: 'Layouts discussion' },
     ]
 
-    // Add events for other dates here
   };
   selectedEvent: any = null;
   slotHeight = window.innerHeight * 0.2; // Adjust based on your slot height in CSS

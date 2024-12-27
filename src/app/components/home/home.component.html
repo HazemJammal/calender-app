@@ -1,22 +1,22 @@
-<mat-sidenav-container class="sidenav-container">
+<div class="sidenav-container">
   <!-- Sidenav -->
-  <mat-sidenav #sidenav mode="side" class="sidenav" fixedInViewport>
+  <nav #sidenav mode="side" class=" side-nav d-flex flex-column p-3" fixedInViewport>
     <div>
       <header class="mat-toolbar-single-row" style="height: fit-content;  margin-top: 2vh">
-        <p>Design <span>Calender</span></p>
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
+        <h4>Design <span>Calender</span></h4>
+        <button>
+          <i>menu</i>
         </button>
       </header>
-      <mat-divider class="divder"></mat-divider>
+      <div class="divder"></div>
       <div class="mat-toolbar-single-row profile-info">
         <img src="../../../assets/images/unnamed.jpg" alt="">
         <div class="profile-name">
           <p class="mat-title-medium">Walter</p>
           <span class="mat-body-small">Pro Desinger</span>
         </div>
-        <mat-icon class="arrow-icon" (click)="toggleActions()">{{ isActionsVisible ? 'arrow_drop_up' : 'arrow_drop_down'
-          }}</mat-icon>
+        <i class="arrow-icon" (click)="toggleActions()">{{ isActionsVisible ? 'arrow_drop_up' : 'arrow_drop_down'
+          }}</i>
       </div>
       @if(isActionsVisible){
       <div class="actions-show">
@@ -55,8 +55,8 @@
       }
       <div class="mat-toolbar-single-row favourites ">
         <p>Favourites</p>
-        <mat-icon class="arrow-icon" (click)="toggleActions()">{{ isActionsVisible ? 'arrow_drop_up' : 'arrow_drop_down'
-          }}</mat-icon>
+        <i class="arrow-icon" (click)="toggleActions()">{{ isActionsVisible ? 'arrow_drop_up' : 'arrow_drop_down'
+          }}</i>
       </div>
 
       <div class="actions">
@@ -88,19 +88,19 @@
         </div>
       </div>
     </div>
-  </mat-sidenav>
+  </nav>
 
   <!-- Main content -->
-  <mat-sidenav-content>
+  <div>
 
 
 
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
+    <button mat-icon-button>
+      <i>menu</i>
     </button>
     <app-home-nav></app-home-nav>
     <app-calendar></app-calendar>
 
     <button (click)="logout()">logout</button>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </div>
+</div>
