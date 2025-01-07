@@ -1,5 +1,6 @@
 import { Component, OnInit, signal} from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { HomeAsideComponent } from "../home-aside/home-aside.component";
 import { GoogleAccountApiService } from '../../services/google-account-api.service';
@@ -11,12 +12,15 @@ import { CalendarComponent } from "../calendar/calendar.component";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, HomeAsideComponent, HomeNavComponent, CalendarComponent],
+  imports: [FormsModule, ReactiveFormsModule, HomeAsideComponent, HomeNavComponent, CalendarComponent,CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   providers: [],
 })
 export class HomeComponent implements OnInit   {
+
+  showSideNav = false;
+  menuHidden = false;
   
   userInfo = signal<any>("")
 
@@ -42,6 +46,13 @@ export class HomeComponent implements OnInit   {
   toggleActions(): void {
     this.isActionsVisible = !this.isActionsVisible; // Toggle visibility
   }
+
+  toggleSideNav() :void{
+    this.showSideNav = !this.showSideNav;
+    this.menuHidden = !this.menuHidden
+  }
+
+  
 
 }
 

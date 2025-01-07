@@ -10,13 +10,6 @@ import { CalendarService } from '../../services/calendar.service';
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent {
- 
- 
-
-
-
-
-
   days = this.getNextFiveDays();
   times = [
     '01 AM',
@@ -45,19 +38,21 @@ export class CalendarComponent {
     '11 PM',
   ];
   events: any = {
-    18: [
-      { title: 'Finalize Layouts', time: '08:30 AM - 09:30 AM', startTime: '01:00', endTime: '02:45', description: 'Layouts discussion' },
+    7: [
+      { title: 'Finalize Layouts', time: '08:30 AM - 09:30 AM', startTime: '01:00', endTime: '02:30', description: 'Layouts discussion' },
     ],
-    13: [
+  8: [
       { title: 'Finalize Layouts', time: '08:00 AM - 11:00 AM', startTime: '08:00', endTime: '11:00', description: 'Layouts discussion' },
     ],
-    14: [
+    10: [
       { title: 'Finalize Layouts', time: '10:00 - 09:30 AM', startTime: '09:30', endTime: '10:00', description: 'Layouts discussion' },
     ]
 
   };
   selectedEvent: any = null;
-  slotHeight = window.innerHeight * 0.2; // Adjust based on your slot height in CSS
+  slotHeight = window.innerHeight * 0.2;
+  eventHeight = window.innerHeight * 0.2
+  // Adjust based on your slot height in CSS
   getNextFiveDays() {
     const days = [];
     const today = new Date();
@@ -77,18 +72,18 @@ export class CalendarComponent {
   }
 
   getTimeLinePosition2(index: number): string {
-    return `${(index * this.slotHeight) + 96}px`;
+    return `${(index * this.slotHeight) + 83}px`;
   }
 
   getEventPosition(startTime: string): string {
     const [hour, minute] = startTime.split(':').map(Number);
 
-    return `${(hour - 1) * this.slotHeight + (minute * 2.9)}px`; // Adjust top position based on time
+    return `${(hour - 0.92 ) * this.eventHeight + (minute *3)}px`; // Adjust top position based on time
   }
 
   getEventHeight(startTime: string, endTime: string): string {
     const [startHour, startMinute] = startTime.split(':').map(Number);
     const [endHour, endMinute] = endTime.split(':').map(Number);
-    return `${(endHour - startHour) * this.slotHeight +((endMinute - startMinute) *2.9)}px`; // Adjust height based on duration
+    return `${(endHour - startHour  - 0.05) * this.eventHeight +((endMinute - startMinute) *2.1)}px`; // Adjust height based on duration
   }
 }
