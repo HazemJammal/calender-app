@@ -38,15 +38,15 @@ export class CalendarComponent {
     '11 PM',
   ];
   events: any = {
-    7: [
-      { title: 'Finalize Layouts', time: '08:30 AM - 09:30 AM', startTime: '01:00', endTime: '02:30', description: 'Layouts discussion' },
-    ],
-  8: [
-      { title: 'Finalize Layouts', time: '08:00 AM - 11:00 AM', startTime: '08:00', endTime: '11:00', description: 'Layouts discussion' },
-    ],
-    10: [
-      { title: 'Finalize Layouts', time: '10:00 - 09:30 AM', startTime: '09:30', endTime: '10:00', description: 'Layouts discussion' },
-    ]
+  //   7: [
+  //     { title: 'Finalize Layouts', time: '08:30 AM - 09:30 AM', startTime: '01:00', endTime: '02:30', description: 'Layouts discussion' },
+  //   ],
+  // 8: [
+  //     { title: 'Finalize Layouts', time: '08:00 AM - 11:00 AM', startTime: '08:00', endTime: '11:00', description: 'Layouts discussion' },
+  //   ],
+  //   10: [
+  //     { title: 'Finalize Layouts', time: '10:00 - 09:30 AM', startTime: '09:30', endTime: '10:00', description: 'Layouts discussion' },
+  //   ]
 
   };
   selectedEvent: any = null;

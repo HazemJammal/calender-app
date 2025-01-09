@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { GoogleAuthService } from './google-auth.service';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,14 @@ export class GoogleAccountApiService {
   constructor(private http:HttpClient, private googleAuth:GoogleAuthService) { 
     this.token = this.googleAuth.getStoredToken() || "";
   }
-  private userInfoUrl = 'https://www.googleapis.com/oauth2/v1/userinfo';
-  getUserInfo(): Observable<any> {
+  private userInfoUrl = 'https://www.googleapis.com/oauth2/v3/userinfo';
+  getUserInfo(): Observable<User> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
     });
-    return this.http.get(this.userInfoUrl, { headers });
+    return this.http.get<User>(this.userInfoUrl, { headers }).pipe(
+      map((res:User) => res)
+    );
   }
 
   getCalendars(): Observable<any> {

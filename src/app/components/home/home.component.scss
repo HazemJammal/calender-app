@@ -18,6 +18,11 @@
   transform: scale(0.9); /* Shrinks slightly for effect */
 }
 
+.nav-pills.hide{
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+
+}
+
 
 .content {
   margin-left: 250px;
@@ -50,6 +55,19 @@
 .menu-icon:hover {
   background-color: #495057;
   cursor: pointer;
+}
+
+.menu-icon2 {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.menu-icon2:hover {
+  background-color: #495057;
+  cursor: pointer;
+  fill: white;
 }
 
 .menu-icon div {

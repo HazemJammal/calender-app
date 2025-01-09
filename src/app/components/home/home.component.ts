@@ -7,6 +7,8 @@ import { GoogleAccountApiService } from '../../services/google-account-api.servi
 import { GoogleAuthService } from '../../services/google-auth.service';
 import { HomeNavComponent } from "../home-nav/home-nav.component";
 import { CalendarComponent } from "../calendar/calendar.component";
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { User } from '../../models/user';
 
 
 @Component({
@@ -18,42 +20,23 @@ import { CalendarComponent } from "../calendar/calendar.component";
   providers: [],
 })
 export class HomeComponent implements OnInit   {
-
   showSideNav = false;
   menuHidden = false;
-  
-  userInfo = signal<any>("")
-
+  userInfo = signal<User>({id: '', email: '', name: '', picture: ''});
   constructor(private googleAccountService:GoogleAccountApiService, private googleAuthService:GoogleAuthService ){}
-
-
   ngOnInit(): void {
     this.googleAccountService.getUserInfo().subscribe((userInfo) => {
       this.userInfo.set(userInfo); // Update the signal
-
       console.log(userInfo)
     });
   }
-
   logout(){
     this.googleAuthService.clearToken()
   }
-
-  readonly panelOpenState = signal(false);
-
-  isActionsVisible = false; // State to track visibility of actions
-
-  toggleActions(): void {
-    this.isActionsVisible = !this.isActionsVisible; // Toggle visibility
-  }
-
   toggleSideNav() :void{
     this.showSideNav = !this.showSideNav;
     this.menuHidden = !this.menuHidden
   }
-
-  
-
 }
 
 

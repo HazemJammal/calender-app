@@ -1,6 +1,6 @@
 <div class="d-flex" style="background-color: #fbf7f4;">
   <div class="side-nav d-flex flex-column p-3" id="sideNav" [ngClass]="{'hidden': !showSideNav }">
-    <div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center">
       <p class="text-center title ">Design <span>Calendar</span></p>
       <div class="menu-icon" (click)="toggleSideNav()">
         <div></div>
@@ -8,110 +8,11 @@
       </div>
     </div>
     <hr>
-    <div class="profile-info d-flex justify-content-between align-items-center mb-3">
-      <img src="https://placebear.com/200/300" class="profile-img" alt="">
-      <div class="profile-name">
-        <p>Walter</p>
-        <span class="mat-body-small">Pro Desinger</span>
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#131E3A">
-        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-      </svg>
-    </div>
-    <ul class="nav nav-pills flex-column ">
-      <li class="nav-item">
-        <a href="#" class="nav-link active d-flex mb-2">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="black">
-            <path
-              d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z" />
-          </svg>
-          <p class="m-0 event">New event</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link d-flex mb-2 custom-hover">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#131E3A">
-            <path
-              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-120H640q-30 38-71.5 59T480-240q-47 0-88.5-21T320-320H200v120Zm280-120q32 0 59-16.5t44-43.5q6-9 15-14.5t20-5.5h142v-360H200v360h142q11 0 20 5.5t15 14.5q17 27 44 43.5t59 16.5ZM200-200h560-560Z" />
-          </svg>
-          <p class="m-0 event">Inbox</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link d-flex mb-2 custom-hover">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#131E3A">
-            <path
-              d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-40q0-17 11.5-28.5T280-880q17 0 28.5 11.5T320-840v40h320v-40q0-17 11.5-28.5T680-880q17 0 28.5 11.5T720-840v40h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z" />
-          </svg>
-          <p class="m-0 event">Calender</p>
-        </a>
-      </li>
-
-    </ul>
-    <hr>
-    <div class="profile-info d-flex justify-content-between align-items-center mb-3">
-      <div class="profile-name">
-        <p>Favourites</p>
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#131E3A">
-        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-      </svg>
-    </div>
-    <ul class="nav nav-pills flex-column ">
-      <li class="nav-item">
-        <a href="#" class="nav-link d-flex mb-2 ">
-          <div class="square-container">
-            <div class="inner-square"></div>
-          </div>
-          <small class="m-0">New event</small>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link  d-flex mb-2 ">
-          <div class="square-container">
-            <div class="inner-square" style="background-color: aqua;"></div>
-          </div>
-          <small class="m-0">New event</small>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link d-flex mb-2 ">
-          <div class="square-container-no-border">
-            <div class="inner-square"></div>
-          </div>
-          <small class="m-0">New event</small>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="#" class="nav-link d-flex mb-2 ">
-          <div class="square-container-no-border">
-            <div class="inner-square"></div>
-          </div>
-          <small class="m-0">New event</small>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link  d-flex mb-2 ">
-          <div class="square-container-no-border">
-            <div class="inner-square"></div>
-          </div>
-          <small class="m-0 text-sm">New event</small>
-        </a>
-      </li>
-    </ul>
-    <div>
-
-
-    </div>
-    <div class="mt-auto">
-      <a href="#" class="nav-link">Logout</a>
-    </div>
-  
+    <app-home-aside></app-home-aside>
   </div>
   <div class="content p-3" id="mainContent" [ngClass]="{'full-width': !showSideNav }">
-    
-    <div class="menu-icon" (click)="toggleSideNav()" [class.hide]="menuHidden" >
+
+    <div class="menu-icon" (click)="toggleSideNav()" [class.hide]="menuHidden">
       <div></div>
       <div></div>
     </div>
@@ -121,3 +22,5 @@
   </div>
 
 </div>
+
+<button (click)="logout()">logout</button>
