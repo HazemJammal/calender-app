@@ -18,13 +18,12 @@
         <!-- Calendar Body -->
         <div class="calendar-body">
             <!-- Hour Lines -->
-             @for (time of times; track $index) {
-            <div class="time-line"  [style.top]="getTimeLinePosition($index)">
+            @for (time of times; track $index) {
+            <div class="time-line" [style.top]="getTimeLinePosition($index)">
             </div>
-            <div class="time-line"  [style.top]="getTimeLinePosition2($index)">
+            <div class="time-line" [style.top]="getTimeLinePosition2($index)">
             </div>
-        }
-
+            }
 
             <!-- Time Column -->
             <div class="time-column">
@@ -35,11 +34,14 @@
 
             <!-- Day Columns -->
             <div class="day-column" *ngFor="let day of days">
-                <div *ngFor="let event of events[day.date]" [style.top]="getEventPosition(event.startTime)"
+                {{day.date}}
+                <!-- Events -->
+                <!-- @if (groupEvents.) {} -->
+                <!-- <div *ngFor="let event of events" [style.top]="getEventPosition(event.startTime)"
                     [style.height]="getEventHeight(event.startTime, event.endTime)" class="event-card">
                     <div class="event-time">{{ event.time }}</div>
                     <div class="event-title">{{ event.title }}</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -1,8 +1,3 @@
-.calendar-body-wrapper {
-  overflow-x: auto;
-  touch-action: pan-y;
-}
-
 .calendar-container {
   display: grid;
   grid-template-rows: auto;
@@ -12,6 +7,7 @@
   text-align: center;
 
   .calendar-header {
+    font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 80px repeat(6, 1fr);
@@ -37,6 +33,11 @@
         }
       }
     }
+  }
+
+  .calendar-body-wrapper {
+    overflow-x: auto;
+    touch-action: pan-y;
   }
 
   .calendar-body {

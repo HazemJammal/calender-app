@@ -32,9 +32,10 @@ import { GoogleAccountApiService } from '../../services/google-account-api.servi
 export class HomeAsideComponent  {
   showActions = true;
   showFavourites = true;
-  userInfo = signal<User>({id: '', email: '', name: '', picture: ''});
-  constructor(private googleAccountService:GoogleAccountApiService){}
+  userInfo = signal<User>({id: '', email: '', firstname: '',lastname:'', picture: ''});
   
+  constructor(private googleAccountService:GoogleAccountApiService){}
+
   ngOnInit(): void {
     this.googleAccountService.getUserInfo().subscribe((userInfo) => {
       this.userInfo.set(userInfo); // Update the signal

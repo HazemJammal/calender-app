@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgFor,NgIf } from '@angular/common';
-import * as Hammer from 'hammerjs';
+import { GoogleAccountApiService } from '../../services/google-account-api.service';
 import { CalendarService } from '../../services/calendar.service';
+import { GoogleAuthService } from '../../services/google-auth.service';
+import { CalendarEvent } from '../../models/event';
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -9,7 +11,19 @@ import { CalendarService } from '../../services/calendar.service';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
+  groupedByDay:any;
+  events: any[] = [];
+  constructor(private calendarService: CalendarService, private googleAuth: GoogleAuthService) { }
+
+  ngOnInit(): void {
+    this.calendarService.getCalenderEvents().subscribe((data) => {
+      this.events = data;
+      console.log(this.events)
+      this.groupEvents(this.events);
+      console.log(this.groupedByDay)
+    });
+  }
   days = this.getNextFiveDays();
   times = [
     '01 AM',
@@ -36,23 +50,29 @@ export class CalendarComponent {
     '09 PM',
     '10 PM',
     '11 PM',
-  ];
-  events: any = {
-  //   7: [
-  //     { title: 'Finalize Layouts', time: '08:30 AM - 09:30 AM', startTime: '01:00', endTime: '02:30', description: 'Layouts discussion' },
-  //   ],
-  // 8: [
-  //     { title: 'Finalize Layouts', time: '08:00 AM - 11:00 AM', startTime: '08:00', endTime: '11:00', description: 'Layouts discussion' },
-  //   ],
-  //   10: [
-  //     { title: 'Finalize Layouts', time: '10:00 - 09:30 AM', startTime: '09:30', endTime: '10:00', description: 'Layouts discussion' },
-  //   ]
+    '12 PM',
+];
 
-  };
+
+
   selectedEvent: any = null;
   slotHeight = window.innerHeight * 0.2;
   eventHeight = window.innerHeight * 0.2
   // Adjust based on your slot height in CSS
+  groupEvents(events: CalendarEvent[]) {
+    this.groupedByDay = this.events.reduce((acc, event) => {
+    const eventDate = new Date(event.day);
+    const dayNumber = eventDate.getUTCDate(); // Extract day number (9, 10, 11, etc.)
+
+    if (!acc[dayNumber]) {
+        acc[dayNumber] = [];
+    }
+    acc[dayNumber].push(event);
+
+    return acc;
+}, {});
+  }
+  
   getNextFiveDays() {
     const days = [];
     const today = new Date();
@@ -66,6 +86,8 @@ export class CalendarComponent {
     }
     return days;
   }
+
+  
 
   getTimeLinePosition(index: number): string {
     return `${(index * this.slotHeight) + 16}px`;

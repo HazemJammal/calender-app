@@ -22,13 +22,9 @@ import { User } from '../../models/user';
 export class HomeComponent implements OnInit   {
   showSideNav = false;
   menuHidden = false;
-  userInfo = signal<User>({id: '', email: '', name: '', picture: ''});
   constructor(private googleAccountService:GoogleAccountApiService, private googleAuthService:GoogleAuthService ){}
   ngOnInit(): void {
-    this.googleAccountService.getUserInfo().subscribe((userInfo) => {
-      this.userInfo.set(userInfo); // Update the signal
-      console.log(userInfo)
-    });
+
   }
   logout(){
     this.googleAuthService.clearToken()

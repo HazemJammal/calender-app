@@ -18,22 +18,20 @@ export class GoogleAccountApiService {
       Authorization: `Bearer ${this.token}`
     });
     return this.http.get<User>(this.userInfoUrl, { headers }).pipe(
-      map((res:User) => res)
+      map((res:any) => {
+        console.log(res)
+        return {
+          id: res.id,
+          email: res.email,
+          firstname: res.given_name,
+          lastname: res.family_name,
+          picture: res.picture
+        }
+      } )
     );
   }
 
-  getCalendars(): Observable<any> {
-    const url = "https://www.googleapis.com/calendar/v3/calendars/th/events/eventId"
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-      calendarId: 'primary',
-      orderBy: 'startTime',
-      timeMin: '2024-12-10T00:00:00Z',
-      timeMax: '2024-12-20T23:59:59Z',
-    });
-    return this.http.get('https://www.googleapis.com/calendar/v3/users/me/calendarList', { headers });
-  }
-  
+
 
 
 }

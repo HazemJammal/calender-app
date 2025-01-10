@@ -27,6 +27,9 @@
     margin: 0;
     font-weight: bold;
   }
+  span{
+    font-size: 0.8rem;
+  }
 }
 
 .rotate {
@@ -79,8 +82,13 @@
       }
 
       &.active {
+        color: #ffffff;
         background-color: #ff5454 !important;
         fill: white !important;
+        svg{
+        fill: white !important;
+
+        }
       }
     }
   }
