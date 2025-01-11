@@ -52,7 +52,7 @@ return this.http
 
                 // Resolve the background color based on colorId
                 const colorId = item.colorId;
-                const backgroundColor = colorId ? colorMap[colorId]?.background || '#fff' : '#fff';
+                const backgroundColor = colorId ? colorMap[colorId]?.background || '#fbdcd4' : '#fbdcd4';
 
                 return {
                   day: startDate,

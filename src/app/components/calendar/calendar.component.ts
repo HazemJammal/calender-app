@@ -55,8 +55,7 @@ export class CalendarComponent implements OnInit {
 
 
 
-  selectedEvent: any = null;
-  slotHeight = window.innerHeight * 0.2;
+  slotHeight = window.innerHeight * 0.15;
   // Adjust based on your slot height in CSS
 
   
@@ -93,7 +92,7 @@ export class CalendarComponent implements OnInit {
   }
 
   getTimeLinePosition2(index: number): string {
-    return `${(index * this.slotHeight) + 83}px`;
+    return `${(index * this.slotHeight) + 70}px`;
   }
 
   getEventPosition(startTime: Date): string {
@@ -101,7 +100,7 @@ export class CalendarComponent implements OnInit {
     const hour = startTime.getHours();
     const minute = startTime.getMinutes();
     
-    return `${(hour - 0.95 ) * this.slotHeight + (minute *2.25) +2}px`; // Adjust top position based on time
+    return `${(hour - 0.95 ) * this.slotHeight + (minute *2.25) +5}px`; // Adjust top position based on time
   }
 
   getEventHeight(startTime: Date, endTime: Date): string {
