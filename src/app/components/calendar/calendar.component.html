@@ -33,16 +33,21 @@
             </div>
 
             <!-- Day Columns -->
-            <div class="day-column" *ngFor="let day of days">
-                {{day.date}}
-                <!-- Events -->
-                <!-- @if (groupEvents.) {} -->
-                <!-- <div *ngFor="let event of events" [style.top]="getEventPosition(event.startTime)"
-                    [style.height]="getEventHeight(event.startTime, event.endTime)" class="event-card">
-                    <div class="event-time">{{ event.time }}</div>
+            @for (day of groupedEvents; track $index) {
+            <div class="day-column">
+                @if (day.events.length > 0 ) {
+                @for (event of day.events; track $index) {
+                <div [style.top]="getEventPosition(event.startTime)"
+                    [style.height]="getEventHeight(event.startTime, event.endTime)" class="event-card" [style.background]="event.backgroundColor">
+                    <div class="event-time">
+                        {{getDuration(event.startTime, event.endTime)}}
+                    </div>
                     <div class="event-title">{{ event.title }}</div>
-                </div> -->
+                </div>
+                }
+                }
             </div>
+            }
         </div>
     </div>
 

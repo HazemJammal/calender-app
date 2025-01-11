@@ -4,6 +4,7 @@ import { GoogleAccountApiService } from '../../services/google-account-api.servi
 import { CalendarService } from '../../services/calendar.service';
 import { GoogleAuthService } from '../../services/google-auth.service';
 import { CalendarEvent } from '../../models/event';
+import { connect } from 'rxjs';
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -12,16 +13,16 @@ import { CalendarEvent } from '../../models/event';
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent implements OnInit {
-  groupedByDay:any;
   events: any[] = [];
+  groupedEvents: { date: number, day: string, events: any[] }[] = [];
+  
   constructor(private calendarService: CalendarService, private googleAuth: GoogleAuthService) { }
 
   ngOnInit(): void {
     this.calendarService.getCalenderEvents().subscribe((data) => {
       this.events = data;
-      console.log(this.events)
-      this.groupEvents(this.events);
-      console.log(this.groupedByDay)
+      this.groupedEvents  = this.combineData();
+      console.log(this.groupedEvents);
     });
   }
   days = this.getNextFiveDays();
@@ -43,7 +44,6 @@ export class CalendarComponent implements OnInit {
     '03 PM',
     '04 PM',
     '05 PM',
-    '05 PM',
     '06 PM',
     '07 PM',
     '08 PM',
@@ -57,21 +57,8 @@ export class CalendarComponent implements OnInit {
 
   selectedEvent: any = null;
   slotHeight = window.innerHeight * 0.2;
-  eventHeight = window.innerHeight * 0.2
   // Adjust based on your slot height in CSS
-  groupEvents(events: CalendarEvent[]) {
-    this.groupedByDay = this.events.reduce((acc, event) => {
-    const eventDate = new Date(event.day);
-    const dayNumber = eventDate.getUTCDate(); // Extract day number (9, 10, 11, etc.)
 
-    if (!acc[dayNumber]) {
-        acc[dayNumber] = [];
-    }
-    acc[dayNumber].push(event);
-
-    return acc;
-}, {});
-  }
   
   getNextFiveDays() {
     const days = [];
@@ -84,7 +71,19 @@ export class CalendarComponent implements OnInit {
         day: date.toLocaleString('en-US', { weekday: 'short' }),
       });
     }
+
+
     return days;
+  }
+
+  combineData() {
+    return this.days.map((dateObj) => {
+      const matchingEvents = this.events.filter((event) => {
+        const eventDate = new Date(event.day).getDate(); // Extract the day of the month
+        return eventDate === dateObj.date;
+      });
+      return { ...dateObj, events: matchingEvents };
+    });
   }
 
   
@@ -97,15 +96,51 @@ export class CalendarComponent implements OnInit {
     return `${(index * this.slotHeight) + 83}px`;
   }
 
-  getEventPosition(startTime: string): string {
-    const [hour, minute] = startTime.split(':').map(Number);
+  getEventPosition(startTime: Date): string {
 
-    return `${(hour - 0.92 ) * this.eventHeight + (minute *3)}px`; // Adjust top position based on time
+    const hour = startTime.getHours();
+    const minute = startTime.getMinutes();
+    
+    return `${(hour - 0.95 ) * this.slotHeight + (minute *2.25) +2}px`; // Adjust top position based on time
   }
 
-  getEventHeight(startTime: string, endTime: string): string {
-    const [startHour, startMinute] = startTime.split(':').map(Number);
-    const [endHour, endMinute] = endTime.split(':').map(Number);
-    return `${(endHour - startHour  - 0.05) * this.eventHeight +((endMinute - startMinute) *2.1)}px`; // Adjust height based on duration
+  getEventHeight(startTime: Date, endTime: Date): string {
+
+    const startHour = startTime.getHours();
+    const startMinute = startTime.getMinutes();    
+    const endHour = endTime.getHours();
+
+    const endMinute = endTime.getMinutes();
+    return `${(endHour - startHour) * this.slotHeight +((endMinute - startMinute) *15)-10}px`; // Adjust height based on duration
+    // Adjust height based on duration
   }
+  getDuration(startTime:Date, endTime:Date):string{
+
+    const startHour = startTime.getHours();
+    const startMinute = startTime.getMinutes();    
+    const endHour = endTime.getHours();
+    const endMinute = endTime.getMinutes();
+
+    const duration = (endHour - startHour) * 60 + (endMinute - startMinute);
+    const newStartMinute = startMinute < 10 ? `0${startMinute}`: startMinute;
+    const newEndMinute = startMinute < 10 ? `0${startMinute}`: startMinute;
+    
+    if(startMinute == 0 && duration == 60){      
+      return startHour <= 12 ?`${startHour}:00 AM`: `${startHour-12}:00 PM`;
+    }
+
+    else{
+      if(startHour <= 12 && endHour < 12){
+        return `${startHour}:${newStartMinute} - ${endHour}:${newEndMinute} AM`;
+      }
+      else if(startHour > 12 && endHour >= 12){
+        return `${startHour -12}:${newStartMinute} - ${endHour-12}:${newEndMinute} PM`;
+      }
+      else{
+        return `${startHour}:${newStartMinute} AM - ${endHour-12}:${newEndMinute} PM`;
+      }
+    }
+  }
+
+
 }
