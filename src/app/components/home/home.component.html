@@ -1,6 +1,6 @@
 <div class="d-flex" style="background-color: #fbf7f4;">
   <div class="side-nav d-flex flex-column p-3" id="sideNav" [ngClass]="{'hidden': !showSideNav }">
-  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
       <p class="text-center title ">Design <span>Calendar</span></p>
       <div class="menu-icon" (click)="toggleSideNav()">
         <div></div>
@@ -20,7 +20,7 @@
     <app-calendar></app-calendar>
 
   </div>
-
+    <app-modal></app-modal>
 </div>
 
 <button (click)="logout()">logout</button>

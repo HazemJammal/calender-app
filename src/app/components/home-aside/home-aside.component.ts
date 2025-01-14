@@ -3,11 +3,12 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
 import { GoogleAccountApiService } from '../../services/google-account-api.service';
+import { ModalComponent } from "../modal/modal.component";
 
 @Component({
   selector: 'app-home-aside',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalComponent],
   templateUrl: './home-aside.component.html',
   styleUrl: './home-aside.component.scss',
 

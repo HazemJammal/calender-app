@@ -78,4 +78,49 @@ return this.http
 
     
   }
+
+  addEvent(event: CalendarEvent): Observable<CalendarEvent> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+      'Content-Type': 'application/json',
+    });
+
+    const body = {
+      start: {
+        dateTime: event.startTime.toISOString(),
+      },
+      end: {
+        dateTime: event.endTime.toISOString(),
+      },
+      summary: event.title,
+      colorId: '1',
+    };
+
+    return this.http
+      .post<any>('https://www.googleapis.com/calendar/v3/calendars/primary/events', body, { headers })
+      .pipe(
+        map((data) => {
+          const startDate = new Date(data.start.dateTime);
+          const endDate = new Date(data.end.dateTime);
+
+          return {
+            day: startDate,
+            startTime: startDate,
+            endTime: endDate,
+            backgroundColor: '#fbdcd4',
+            title: data.summary || 'No title',
+            time: `${startDate.toLocaleTimeString('en-US', {
+              hour: 'numeric',
+              minute: 'numeric',
+              hour12: true,
+            })} - ${endDate.toLocaleTimeString('en-US', {
+              hour: 'numeric',
+              minute: 'numeric',
+              hour12: true,
+            })}`,
+          } as CalendarEvent;
+        })
+      );
+  
+  }
 }

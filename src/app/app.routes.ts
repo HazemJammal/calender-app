@@ -6,6 +6,6 @@ import { GoogleAuthGuard} from './guards/auth.guard';
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirect default route to Login
     { path: 'login', component: LoginComponent },
-    { path: 'home', component: HomeComponent },
+    { path: 'home', component: HomeComponent, canActivate: [GoogleAuthGuard] },
     { path: '**', redirectTo: 'login' }, 
 ];

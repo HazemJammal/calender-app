@@ -48,9 +48,6 @@ export class GoogleAuthService {
     return !!this.getStoredToken();
   }
 
-  /**
-   * Clears the stored token (for logout purposes).
-   */
   clearToken(): void {
     localStorage.removeItem('google_access_token');
     this.router.navigate(['/login'])

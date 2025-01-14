@@ -5,4 +5,11 @@ export interface CalendarEvent{
     backgroundColor: string;
     startTime: Date;
     endTime: Date;
-} 
+}
+
+export interface AddEvent{
+    startTime: Date;
+    endTime: Date;
+    title: string;
+    colorId: string;
+}
