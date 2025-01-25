@@ -1,6 +1,6 @@
 export interface CalendarEvent{
+    summary: string;
     day:Date;
-    title: string;
     time: string;
     backgroundColor: string;
     startTime: Date;
@@ -8,8 +8,16 @@ export interface CalendarEvent{
 }
 
 export interface AddEvent{
-    startTime: Date;
-    endTime: Date;
-    title: string;
+    start:{
+        dateTime: string;
+        timeZone: string
+    };
+    end:{
+        dateTime: string;
+        timeZone: string
+    };
+    summary: string;
     colorId: string;
+    description: string;
 }
+

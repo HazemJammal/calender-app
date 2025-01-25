@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, effect, OnInit, signal, ViewChild} from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -8,6 +8,7 @@ import { GoogleAuthService } from '../../services/google-auth.service';
 import { HomeNavComponent } from "../home-nav/home-nav.component";
 import { CalendarComponent } from "../calendar/calendar.component";
 import { ModalComponent } from "../modal/modal.component";
+import { ModalService } from '../../services/modal.service';
 
 
 @Component({
@@ -21,14 +22,13 @@ import { ModalComponent } from "../modal/modal.component";
 export class HomeComponent implements OnInit   {
   showSideNav = false;
   menuHidden = false;
+  modalOpen  = signal(false);
 
-  @ViewChild(ModalComponent) modal!: ModalComponent;
-
-  constructor(private googleAccountService:GoogleAccountApiService, private googleAuthService:GoogleAuthService ){
+  constructor(private googleAccountService:GoogleAccountApiService, private googleAuthService:GoogleAuthService, public modalService: ModalService){
     
   }
   ngOnInit(): void {
-
+    this.modalOpen.set(this.modalService.isModalOpen());
   }
   logout(){
     this.googleAuthService.clearToken()
@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit   {
     this.showSideNav = !this.showSideNav;
     this.menuHidden = !this.menuHidden
   }
+
+
 
 }
 

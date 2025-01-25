@@ -10,10 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   constructor(private googleAuthService:GoogleAuthService,private router:Router, private ref: ChangeDetectorRef){}
-
-
-  user:gapi.auth2.GoogleUser|null = null;
-  ngOnInit():void {
+   ngOnInit():void {
 
     if(this.googleAuthService.isLoggedIn()){
       this.router.navigate(['/home'])

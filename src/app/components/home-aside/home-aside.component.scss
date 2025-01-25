@@ -85,10 +85,10 @@
       &.active {
         color: #ffffff;
         background-color: #ff5454 !important;
+        transition: background-color 0.3s ease-in,fill 0.3s ease;
         fill: white !important;
         svg{
         fill: white !important;
-
         }
       }
     }

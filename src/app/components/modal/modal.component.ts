@@ -1,10 +1,14 @@
 import { Component,HostListener,OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalService } from '../../services/modal.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AddEvent, CalendarEvent } from '../../models/event';
+import { CalendarService } from '../../services/calendar.service';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
 })
@@ -17,6 +21,16 @@ export class ModalComponent implements OnInit{
 
   timesFrom:string[] = [];
   timesTo:string[] = [];
+
+  eventSummary = new FormControl<string>('');
+  eventStartTime = new FormControl('');
+  eventEndTime = new FormControl('');
+  eventDescription = new FormControl('');
+
+
+
+  constructor(private modalService:ModalService, private calendarService: CalendarService) { }
+
   ngOnInit() {
   this.fillTimeFrom();
   this.currentTime();
@@ -82,7 +96,9 @@ export class ModalComponent implements OnInit{
   selectTime(time: string, index:number): void {
 
     this.selectedTimeFrom.set(time);
+    this.eventStartTime.setValue(this.selectedTimeFrom());
     this.selectedTimeTo.set(this.timesFrom[index+4]);
+    this.eventEndTime.setValue(this.selectedTimeTo());
     this.fillTimeTo(time);
     this.dropdownVisibleFrom = false;
   }
@@ -103,7 +119,81 @@ export class ModalComponent implements OnInit{
       // Close dropdown if click is outside the component
     }
   }
-  showModalDp = true;
   closeModal(): void {
+    this.modalService.closeModal();
   }
+
+  openModal(): void {
+    this.modalService.openModal();
+  }
+
+  convertTo24Hour(time: string): string {
+    let hour = parseInt(time.split(':')[0]);
+    let minute = time.split(':')[1].slice(0, 2);
+    let ampm = time.slice(-2);
+
+    if (ampm === 'am' && hour === 12) {
+      hour = 0;
+    }
+    if (ampm === 'pm' && hour < 12) {
+      hour += 12;
+    }
+
+    return hour + ':' + minute;
+  }
+  saveEvent(): void {
+    // Convert selected times to 24-hour format
+    const eventStart = this.convertTo24Hour(this.selectedTimeFrom());
+    const eventEnd = this.convertTo24Hour(this.selectedTimeTo());
+  
+    const [hoursStart, minutesStart] = eventStart.split(":").map(Number); // Parse start time
+    const [hoursEnd, minutesEnd] = eventEnd.split(":").map(Number); // Parse end time
+  
+    // Create start and end Date objects
+    const startTime = new Date();
+    startTime.setHours(hoursStart, minutesStart, 0, 0);
+  
+    const endTime = new Date();
+    endTime.setHours(hoursEnd, minutesEnd, 0, 0);
+  
+    // Validate that the start time is earlier than the end time
+    if (startTime >= endTime) {
+      console.error("End time must be later than start time.");
+      return;
+    }
+  
+    const summary = this.eventSummary.value as string;
+    const colorId = '1';
+    const description = this.eventDescription.value as string;
+  
+    // Create event object
+    const event: AddEvent = {
+      start: {
+        dateTime: startTime.toISOString(),
+        timeZone: 'Asia/Riyadh', // Use a valid IANA time zone
+      },
+      end: {
+        dateTime: endTime.toISOString(),
+        timeZone: 'Asia/Riyadh', // Use a valid IANA time zone
+      },
+      summary,
+      colorId,
+      description,
+    };
+  
+    // Call the API to add the event
+    this.calendarService.addEvent(event).subscribe(
+      () => {
+        console.log('Event added successfully');
+        this.modalService.closeModal();
+      },
+      (error) => {
+        console.error('Error adding event:', error);
+      }
+    );
+  }
+  
+  
+  
+
 }

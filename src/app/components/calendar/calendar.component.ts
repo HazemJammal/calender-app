@@ -13,8 +13,11 @@ import { connect } from 'rxjs';
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent implements OnInit {
-  events: any[] = [];
-  groupedEvents: { date: number, day: string, events: any[] }[] = [];
+
+  today = new Date();
+  todayDate = this.today.getDate();
+  events: CalendarEvent[] = [];
+  groupedEvents: { date: number, day: string, events: CalendarEvent[] }[] = [];
   
   constructor(private calendarService: CalendarService, private googleAuth: GoogleAuthService) { }
 
@@ -54,14 +57,16 @@ export class CalendarComponent implements OnInit {
 ];
 
 
-
   slotHeight = window.innerHeight * 0.15;
+  eventHeight = window.innerHeight * 0.14;
+
   // Adjust based on your slot height in CSS
 
   
   getNextFiveDays() {
     const days = [];
     const today = new Date();
+    today.setDate(today.getDate() - 1);
     for (let i = 0; i < 6; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
@@ -100,7 +105,7 @@ export class CalendarComponent implements OnInit {
     const hour = startTime.getHours();
     const minute = startTime.getMinutes();
     
-    return `${(hour - 0.95 ) * this.slotHeight + (minute *2.25) +5}px`; // Adjust top position based on time
+    return `${(hour -  1) * this.slotHeight + ((minute *this.eventHeight)/100) - 5}px`; // Adjust top position based on time
   }
 
   getEventHeight(startTime: Date, endTime: Date): string {
@@ -110,7 +115,7 @@ export class CalendarComponent implements OnInit {
     const endHour = endTime.getHours();
 
     const endMinute = endTime.getMinutes();
-    return `${(endHour - startHour) * this.slotHeight +((endMinute - startMinute) *15)-10}px`; // Adjust height based on duration
+    return `${(endHour - startHour) * this.eventHeight + Math.abs((endMinute - startMinute)/60) * this.eventHeight  }px`; // Adjust height based on duration
     // Adjust height based on duration
   }
   getDuration(startTime:Date, endTime:Date):string{
@@ -122,7 +127,7 @@ export class CalendarComponent implements OnInit {
 
     const duration = (endHour - startHour) * 60 + (endMinute - startMinute);
     const newStartMinute = startMinute < 10 ? `0${startMinute}`: startMinute;
-    const newEndMinute = startMinute < 10 ? `0${startMinute}`: startMinute;
+    const newEndMinute = endMinute < 10 ? `0${endMinute}`: endMinute;
     
     if(startMinute == 0 && duration == 60){      
       return startHour <= 12 ?`${startHour}:00 AM`: `${startHour-12}:00 PM`;

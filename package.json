@@ -27,7 +27,9 @@
     "angular-oauth2-oidc": "^17.0.2",
     "bootstrap": "^5.3.3",
     "gapi-script": "^1.2.0",
+    "googleapis": "^144.0.0",
     "hammerjs": "^2.0.8",
+    "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"

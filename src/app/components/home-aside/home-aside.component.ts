@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
 import { GoogleAccountApiService } from '../../services/google-account-api.service';
 import { ModalComponent } from "../modal/modal.component";
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-home-aside',
@@ -31,13 +32,15 @@ import { ModalComponent } from "../modal/modal.component";
   ]
 })
 export class HomeAsideComponent  {
+  active = 'calendar';
   showActions = true;
   showFavourites = true;
   userInfo = signal<User>({id: '', email: '', firstname: '',lastname:'', picture: ''});
   
-  constructor(private googleAccountService:GoogleAccountApiService){}
+  constructor(private googleAccountService:GoogleAccountApiService, private modalService: ModalService){}
 
   ngOnInit(): void {
+    console.log('HomeAsideComponent initialized');
     this.googleAccountService.getUserInfo().subscribe((userInfo) => {
       this.userInfo.set(userInfo); // Update the signal
       console.log(userInfo)
@@ -50,6 +53,11 @@ export class HomeAsideComponent  {
   }
   toggleFavourites() : void{
     this.showFavourites = !this.showFavourites;
+  }
+
+  openModal() {
+    this.modalService.openModal();
+    this.active = 'new-event';
   }
 
 }

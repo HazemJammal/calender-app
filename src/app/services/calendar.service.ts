@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GoogleAuthService } from './google-auth.service';
 import { map, Observable, switchMap } from 'rxjs';
-import { CalendarEvent } from '../models/event';
+
+import { AddEvent, CalendarEvent } from '../models/event';
 declare var gapi: any;
 
 @Injectable({
@@ -24,6 +25,7 @@ export class CalendarService {
       Authorization: `Bearer ${this.token}`
     });
     const now = new Date();
+    now.setDate(now.getDate() - 1);
     const timeMin = new Date(now.setHours(0, 0, 0, 0)).toISOString(); // Start of the day
     const timeMax = new Date(now.setDate(now.getDate() + 5)).toISOString();
 
@@ -59,7 +61,7 @@ return this.http
                   startTime: startDate,
                   endTime: endDate,
                   backgroundColor: backgroundColor,
-                  title: item.summary || 'No title',
+                  summary: item.summary || 'No title',
                   time: `${startDate.toLocaleTimeString('en-US', {
                     hour: 'numeric',
                     minute: 'numeric',
@@ -79,48 +81,17 @@ return this.http
     
   }
 
-  addEvent(event: CalendarEvent): Observable<CalendarEvent> {
+  addEvent(event: AddEvent): Observable<any> {
+    
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',
+      
     });
 
-    const body = {
-      start: {
-        dateTime: event.startTime.toISOString(),
-      },
-      end: {
-        dateTime: event.endTime.toISOString(),
-      },
-      summary: event.title,
-      colorId: '1',
-    };
 
-    return this.http
-      .post<any>('https://www.googleapis.com/calendar/v3/calendars/primary/events', body, { headers })
-      .pipe(
-        map((data) => {
-          const startDate = new Date(data.start.dateTime);
-          const endDate = new Date(data.end.dateTime);
+    return this.http.post('https://www.googleapis.com/calendar/v3/calendars/primary/events', event,{ headers });
 
-          return {
-            day: startDate,
-            startTime: startDate,
-            endTime: endDate,
-            backgroundColor: '#fbdcd4',
-            title: data.summary || 'No title',
-            time: `${startDate.toLocaleTimeString('en-US', {
-              hour: 'numeric',
-              minute: 'numeric',
-              hour12: true,
-            })} - ${endDate.toLocaleTimeString('en-US', {
-              hour: 'numeric',
-              minute: 'numeric',
-              hour12: true,
-            })}`,
-          } as CalendarEvent;
-        })
-      );
-  
+
   }
 }

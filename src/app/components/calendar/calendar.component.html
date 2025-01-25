@@ -2,11 +2,11 @@
     <!-- Calendar Header -->
     <div class="calendar-header">
         <div></div>
-        <div class="day-cell" *ngFor="let day of days">
-            <div class="day-number" [style.color]="day.date === 12 ? '#131E3A' : '#ddcdc2'">
+        <div class="day-cell" *ngFor="let day of days" >
+            <div class="day-number" [style.color]="day.date === todayDate ? '#131E3A' : '#ddcdc2'">
                 <p>{{ day.date }}</p>
             </div>
-            <div class="day-name">
+            <div class="day-name" [style.color]="day.date === todayDate ? '#131E3A' : '#ddcdc2'">
                 <p>{{ day.day }}</p>
                 <div class="vertical-line"></div>
             </div>
@@ -42,7 +42,7 @@
                     <div class="event-time">
                         {{getDuration(event.startTime, event.endTime)}}
                     </div>
-                    <div class="event-title">{{ event.title }}</div>
+                    <div class="event-title">{{ event.summary }}</div>
                 </div>
                 }
                 }
