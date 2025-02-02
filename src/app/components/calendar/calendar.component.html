@@ -1,54 +1,59 @@
 <div class="calendar-container">
     <!-- Calendar Header -->
     <div class="calendar-header">
-        <div></div>
-        <div class="day-cell" *ngFor="let day of days" >
-            <div class="day-number" [style.color]="day.date === todayDate ? '#131E3A' : '#ddcdc2'">
-                <p>{{ day.date }}</p>
-            </div>
-            <div class="day-name" [style.color]="day.date === todayDate ? '#131E3A' : '#ddcdc2'">
-                <p>{{ day.day }}</p>
-                <div class="vertical-line"></div>
-            </div>
+      <div></div>
+      @for (day of days; track $index) {
+        <div class="day-cell">
+          <div class="day-number" [style.color]="day.date === todayDate ? '#131E3A' : '#ddcdc2'">
+            <p>{{ day.date }}</p>
+          </div>
+          <div class="day-name" [style.color]="day.date === todayDate ? '#131E3A' : '#ddcdc2'">
+            <p>{{ day.day }}</p>
+            <div class="vertical-line"></div>
+          </div>
         </div>
+      }
     </div>
-
+  
     <!-- Calendar Body Wrapper -->
     <div class="calendar-body-wrapper">
-        <!-- Calendar Body -->
-        <div class="calendar-body">
-            <!-- Hour Lines -->
-            @for (time of times; track $index) {
-            <div class="time-line" [style.top]="getTimeLinePosition($index)">
+      <!-- Calendar Body -->
+      <div class="calendar-body">
+        <!-- Hour Lines -->
+        @for (time of times; track $index) {
+          <div class="time-line" [style.top]="getTimeLinePosition($index)"></div>
+          <div class="time-line" [style.top]="getTimeLinePosition2($index)"></div>
+        }
+  
+        <!-- Time Column -->
+        <div class="time-column">
+          @for (time of times; track $index) {
+            <div class="time-slot">
+              <p>{{ time }}</p>
             </div>
-            <div class="time-line" [style.top]="getTimeLinePosition2($index)">
-            </div>
-            }
-
-            <!-- Time Column -->
-            <div class="time-column">
-                <div class="time-slot" *ngFor="let time of times">
-                    <p>{{ time }}</p>
-                </div>
-            </div>
-
-            <!-- Day Columns -->
-            @for (day of groupedEvents; track $index) {
-            <div class="day-column">
-                @if (day.events.length > 0 ) {
-                @for (event of day.events; track $index) {
-                <div [style.top]="getEventPosition(event.startTime)"
-                    [style.height]="getEventHeight(event.startTime, event.endTime)" class="event-card" [style.background]="event.backgroundColor">
-                    <div class="event-time">
-                        {{getDuration(event.startTime, event.endTime)}}
-                    </div>
-                    <div class="event-title">{{ event.summary }}</div>
-                </div>
-                }
-                }
-            </div>
-            }
+          }
         </div>
+  
+        <!-- Day Columns -->
+        @for (day of groupedEvents; track $index) {
+          <div class="day-column">
+            @if (day.events.length > 0) {
+              @for (event of day.events; track $index) {
+                <div [style.top]="getEventPosition(event.startTime)"
+                     [style.height]="getEventHeight(event.startTime, event.endTime)"
+                     [style.width]="event.width + '%'"
+                     [style.left]="event.left + '%'"
+                     class="event-card"
+                     [style.background]="event.backgroundColor">
+                  <div class="event-time">
+                    {{ getDuration(event.startTime, event.endTime) }}
+                  </div>
+                  <div class="event-title">{{ event.summary }}</div>
+                </div>
+              }
+            }
+          </div>
+        }
+      </div>
     </div>
-
-</div>
+  </div>

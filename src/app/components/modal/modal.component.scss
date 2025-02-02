@@ -1,64 +1,104 @@
 .modal {
-    display: block !important;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Add a backdrop */
+  display: block !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Add a backdrop */
 }
 
 .modal-dialog {
-    max-width: 600px;
-    margin: 50px auto;
+  max-width: 600px;
+  margin: 50px auto;
 }
 
 .modal-content {
-    border-radius: 8px;
+  border-radius: 8px;
 
-    .modal-header {
-        background-color: #FF5454;
-        color: white;
-    }
+  .modal-header {
+    background-color: #FF5454;
+    color: white;
+  }
 }
 
 
 .menu-icon2 {
-    display: inline-block;
-    padding: 5px;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: #131e3a;
-      cursor: pointer;
-      fill: white;
-    }
-  
-    svg{
-      transition: transform 0.3s ease;
-    }
+  display: inline-block;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #131e3a;
+    cursor: pointer;
+    fill: white;
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
 }
 
 
 
 .custom-select-container {
-    position: relative;
-  }
-  
-  .dropdown-list {
-    position: absolute;
-    overflow-y: auto;
-    max-height: 30vh;
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 10;
-  }
-  
-  .dropdown-item {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f0f0f0;
-  }
-  textarea{
-    resize: none;
-  }
+  position: relative;
+}
+
+.dropdown-list {
+  position: absolute;
+  overflow-y: auto;
+  max-height: 30vh;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+textarea {
+  resize: none;
+}
+
+.color-container{
+  display: flex;
+  gap: 0.25em;
+}
+
+.color-div{
+  height: 27.5px;
+  width: 27.5px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.color-div:hover{
+  cursor: pointer;
+  border: 2px solid #131e3a;  
+
+}
+
+.circle {
+  width: 27.5px;
+  height: 27.5px;
+  transition: all 0.2s ease; /* Smooth transition */
+  margin-right: 0.25rem; /* Optional: Add some space between circles */
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.circle:hover {
+  cursor: pointer;
+  border: 3px solid rgba(255, 255, 255, 0.5); /* Border on hover */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow for a "sexy" effect */
+  transform: scale(1.1); /* Optional: Slightly enlarge on hover */
+}
+
+.circle:active {
+  background-color: #FF5454; /* Change color when clicked */
+}

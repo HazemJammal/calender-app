@@ -1,9 +1,10 @@
 import { Component,HostListener,OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, KeyValue } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AddEvent, CalendarEvent } from '../../models/event';
 import { CalendarService } from '../../services/calendar.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -13,6 +14,17 @@ import { CalendarService } from '../../services/calendar.service';
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent implements OnInit{
+  colors = signal({
+    '7':'039BE5',
+    '9':'3F51B5',
+    '11':'D50000',
+    '5':'F6BF26',
+    '10':'0B8043',
+  });
+
+  defaultColor:KeyValue<string, string> = {key: '10', value: '0B8043'};
+  selectedColor = signal<KeyValue<string, string>>(this.defaultColor);
+  
   selectedTimeFrom = signal<string>('');
   selectedTimeTo = signal<string>('');
 
@@ -26,6 +38,7 @@ export class ModalComponent implements OnInit{
   eventStartTime = new FormControl('');
   eventEndTime = new FormControl('');
   eventDescription = new FormControl('');
+
 
 
 
@@ -163,7 +176,7 @@ export class ModalComponent implements OnInit{
     }
   
     const summary = this.eventSummary.value as string;
-    const colorId = '1';
+    const colorId = this.selectedColor().key;
     const description = this.eventDescription.value as string;
   
     // Create event object
@@ -192,7 +205,10 @@ export class ModalComponent implements OnInit{
       }
     );
   }
-  
+
+  selectColor(color: KeyValue<string, string>): void {
+    this.selectedColor.set(color); // Update the selected color signal
+  }
   
   
 
