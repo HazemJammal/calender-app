@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit   {
     
   }
   ngOnInit(): void {
+    
     this.modalOpen.set(this.modalService.isModalOpen());
   }
   logout(){

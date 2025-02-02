@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, ViewportScroller } from '@angular/common';
 import { CalendarService } from '../../services/calendar.service';
 import { GoogleAuthService } from '../../services/google-auth.service';
 import { CalendarEvent } from '../../models/event';
@@ -49,8 +49,11 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private calendarService: CalendarService,
-    private googleAuth: GoogleAuthService
-  ) {}
+    private googleAuth: GoogleAuthService,
+    private viewportScroller: ViewportScroller
+  ) {
+    
+  }
 
   ngOnInit(): void {
     this.refreshCalendar();
@@ -63,7 +66,11 @@ export class CalendarComponent implements OnInit {
         this.adjustEventWidths(overlappingGroups);
       });
     });
+    
+
   }
+
+  
 
   refreshCalendar(): void {
     this.calendarService.getCalenderEvents().subscribe();
@@ -121,7 +128,7 @@ export class CalendarComponent implements OnInit {
 
   adjustEventWidths(groupedEvents: CalendarEvent[][]): void {
     for (const group of groupedEvents) {
-      const widthPercentage = 100 / group.length;
+      const widthPercentage = 95 / group.length;
       for (let i = 0; i < group.length; i++) {
         group[i].width = widthPercentage;
         group[i].left = i * widthPercentage;
